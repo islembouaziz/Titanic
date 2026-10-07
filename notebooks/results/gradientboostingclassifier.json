@@ -1,0 +1,16 @@
+{
+  "name": "Gradient Boosting",
+  "cv_score": 0.8328178863390132,
+  "cv_std": 0.019927494268782597,
+  "val_acc": 0.8435754189944135,
+  "val_f1": 0.7741935483870968,
+  "train_acc": 0.898876404494382,
+  "overfit_gap": 0.055300985499968536,
+  "time": 5.1416120529174805,
+  "params": {
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "subsample": 0.8
+  }
+}

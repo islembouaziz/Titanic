@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Titanic - Model Comparison</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#f6f7fb;--fg:#1c2030;--card:#fff;--mut:#667;--acc:#4f46e5;--good:#16a34a;--bad:#dc2626;--line:#e3e6ef}
+@media(prefers-color-scheme:dark){:root{--bg:#12141c;--fg:#e8eaf2;--card:#1b1e2a;--mut:#9aa0b5;--line:#2a2e3e}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--fg);padding:24px;max-width:1100px;margin:auto}
+h1{margin:0 0 4px}h2{margin-top:32px}.sub{color:var(--mut);margin-bottom:20px}
+.hero{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px;padding:22px 26px}
+.hero h2{margin:0 0 6px;color:#fff}.hero p{margin:4px 0;opacity:.95}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+th{background:var(--line)}tr.best td{font-weight:600;background:rgba(79,70,229,.10)}
+.badge{background:var(--acc);color:#fff;border-radius:6px;padding:1px 7px;font-size:11px}
+.ok{color:var(--good)}.warn{color:var(--bad)}
+.barrow{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.track{background:var(--line);border-radius:8px;height:16px;overflow:hidden}
+.fill{height:100%;background:#94a3b8}.fill.top{background:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 6px}.card small{color:var(--mut);font-weight:400;font-size:12px;margin-left:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cols h4{margin:8px 0 2px;font-size:13px}
+ul{margin:0;padding-left:18px;font-size:13px}ul.pro li::marker{color:var(--good)}ul.con li::marker{color:var(--bad)}
+.params{font-size:12px;color:var(--mut);word-break:break-word}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:14px}
+.tbl-wrap{overflow-x:auto}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.barrow{grid-template-columns:110px 1fr 60px}}
+</style></head><body>
+<h1>Titanic - Model Comparison</h1>
+<div class="sub">XGBoost - Gradient Boosting - Random Forest - Decision Tree - Logistic Regression | GridSearchCV, 5-fold</div>
+
+<div class="hero"><h2>Best model: XGBoost</h2>
+<p>CV accuracy <b>83.71%</b> | Validation accuracy <b>84.92%</b></p>
+<p>Regularized boosting captured non-linear interactions while its built-in L1/L2 penalties and subsampling limited overfitting.</p></div>
+
+<h2>Results</h2>
+<div class="tbl-wrap"><table><tr><th>#</th><th>Model</th><th>CV accuracy</th><th>Validation acc.</th><th>F1</th><th>Overfit gap (train - valid)</th><th>Search time</th></tr><tr class="best"><td>1</td><td>XGBoost <span class="badge">BEST</span></td><td>83.71% ± 1.71</td><td>84.92%</td><td>0.784</td><td class='ok'>+4.6 pts</td><td>52.5s</td></tr><tr><td>2</td><td>Gradient Boosting</td><td>83.28% ± 1.99</td><td>84.36%</td><td>0.774</td><td class='ok'>+5.5 pts</td><td>16.6s</td></tr><tr><td>3</td><td>Random Forest</td><td>82.72% ± 3.04</td><td>83.24%</td><td>0.754</td><td class='ok'>+6.1 pts</td><td>5.9s</td></tr><tr><td>4</td><td>Decision Tree</td><td>82.16% ± 2.38</td><td>81.56%</td><td>0.740</td><td class='ok'>+3.1 pts</td><td>8.5s</td></tr><tr><td>5</td><td>Logistic Regression</td><td>80.06% ± 2.37</td><td>81.01%</td><td>0.750</td><td class='ok'>-0.8 pts</td><td>6.0s</td></tr></table></div>
+<h2>Validation accuracy</h2><div class="box"><div class='barrow'><span>XGBoost</span><div class='track'><div class='fill top' style='width:84.9%'></div></div><b>84.92%</b></div><div class='barrow'><span>Gradient Boosting</span><div class='track'><div class='fill' style='width:84.4%'></div></div><b>84.36%</b></div><div class='barrow'><span>Random Forest</span><div class='track'><div class='fill' style='width:83.2%'></div></div><b>83.24%</b></div><div class='barrow'><span>Decision Tree</span><div class='track'><div class='fill' style='width:81.6%'></div></div><b>81.56%</b></div><div class='barrow'><span>Logistic Regression</span><div class='track'><div class='fill' style='width:81.0%'></div></div><b>81.01%</b></div></div>
+
+<h2>Differences between the models</h2>
+<div class="grid"><div class='card'><h3>XGBoost <small>Regularized boosted trees</small></h3><p>Optimized gradient boosting: adds L1/L2 regularization, second-order gradients, column subsampling and parallel tree building.</p><div class='cols'><div><h4>Strengths</h4><ul class='pro'><li>Often the best accuracy</li><li>Built-in regularization</li><li>Fast and scalable, handles missing values</li></ul></div><div><h4>Weaknesses</h4><ul class='con'><li>Most hyperparameters to tune</li><li>Less interpretable</li><li>Extra dependency (xgboost)</li></ul></div></div><p class='params'><b>Best params:</b> colsample_bytree=0.8, learning_rate=0.1, max_depth=4, n_estimators=100, subsample=1.0</p></div><div class='card'><h3>Gradient Boosting <small>Boosted trees (sequential)</small></h3><p>Builds many small trees one after another; each new tree corrects the errors of the previous ones (sklearn implementation).</p><div class='cols'><div><h4>Strengths</h4><ul class='pro'><li>High accuracy on tabular data</li><li>Handles non-linear + interactions</li><li>Flexible loss and parameters</li></ul></div><div><h4>Weaknesses</h4><ul class='con'><li>Slower to train</li><li>Many hyperparameters</li><li>Can overfit if learning_rate / n_estimators badly set</li></ul></div></div><p class='params'><b>Best params:</b> learning_rate=0.05, max_depth=3, n_estimators=200, subsample=0.8</p></div><div class='card'><h3>Random Forest <small>Bagged trees (parallel)</small></h3><p>Trains many deep trees in parallel on random samples of rows and features, then averages their votes.</p><div class='cols'><div><h4>Strengths</h4><ul class='pro'><li>Robust, few tuning needs</li><li>Reduces tree overfitting</li><li>Handles non-linear + interactions</li></ul></div><div><h4>Weaknesses</h4><ul class='con'><li>Less interpretable than one tree</li><li>Larger and slower at prediction</li><li>Usually slightly behind boosting</li></ul></div></div><p class='params'><b>Best params:</b> n_estimators=300, max_depth=10, min_samples_split=10, min_samples_leaf=1</p></div><div class='card'><h3>Decision Tree <small>Single tree</small></h3><p>Splits the data with a series of if/else questions (e.g. "Sex = female?", "Age < 10?") until it reaches a prediction.</p><div class='cols'><div><h4>Strengths</h4><ul class='pro'><li>Very easy to read and explain</li><li>No scaling needed</li><li>Captures non-linear rules</li></ul></div><div><h4>Weaknesses</h4><ul class='con'><li>Overfits easily</li><li>Unstable: small data change = different tree</li><li>Usually less accurate than ensembles</li></ul></div></div><p class='params'><b>Best params:</b> criterion=gini, max_depth=5, min_samples_leaf=1, min_samples_split=10</p></div><div class='card'><h3>Logistic Regression <small>Linear model</small></h3><p>Learns one weight per feature and combines them linearly, then converts the score into a survival probability (sigmoid).</p><div class='cols'><div><h4>Strengths</h4><ul class='pro'><li>Fast, simple, hard to overfit</li><li>Interpretable coefficients</li><li>Gives calibrated probabilities</li></ul></div><div><h4>Weaknesses</h4><ul class='con'><li>Only linear boundaries</li><li>Needs scaling / encoding</li><li>Misses feature interactions (e.g. Sex x Pclass)</li></ul></div></div><p class='params'><b>Best params:</b> C=0.1, penalty=l2, solver=lbfgs</p></div></div>
+
+<h2>Quick comparison</h2>
+<div class="tbl-wrap"><table><tr><th></th><th>XGBoost</th><th>Gradient Boosting</th><th>Random Forest</th><th>Decision Tree</th><th>Logistic Regression</th></tr><tr><td>Learns</td><td>Regularized trees in sequence</td><td>Trees in sequence</td><td>Trees in parallel</td><td>Rules (1 tree)</td><td>Linear weights</td></tr><tr><td>Non-linear</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td>Interpretability</td><td>Low</td><td>Low</td><td>Medium</td><td>High</td><td>High</td></tr><tr><td>Overfitting risk</td><td>Medium (regularized)</td><td>Medium</td><td>Low-Medium</td><td>High</td><td>Low</td></tr><tr><td>Needs scaling</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Training speed</td><td>Fast</td><td>Slow</td><td>Fast</td><td>Very fast</td><td>Very fast</td></tr><tr><td>Tuning effort</td><td>Highest</td><td>High</td><td>Medium</td><td>Low</td><td>Low</td></tr></table></div>
+
+<h2>How to choose</h2>
+<div class="box"><ul>
+<li><b>Best accuracy</b> on tabular data: XGBoost or Gradient Boosting.</li>
+<li><b>Need to explain decisions</b> (reports, stakeholders): Decision Tree or Logistic Regression.</li>
+<li><b>Small dataset</b> like Titanic: differences are small; prefer the simplest model within ~1 pt of the best (check the std of CV).</li>
+<li>Selection criterion used here: highest CV accuracy (more reliable than a single validation split), validation accuracy as tie-breaker.</li>
+</ul></div>
+</body></html>

@@ -1,0 +1,15 @@
+{
+  "name": "Logistic Regression",
+  "cv_score": 0.8005614104205654,
+  "cv_std": 0.023741166390431438,
+  "val_acc": 0.8100558659217877,
+  "val_f1": 0.75,
+  "train_acc": 0.8019662921348315,
+  "overfit_gap": -0.008089573786956183,
+  "time": 4.259935140609741,
+  "params": {
+    "C": 0.1,
+    "penalty": "deprecated",
+    "solver": "lbfgs"
+  }
+}

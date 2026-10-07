@@ -1,0 +1,16 @@
+{
+  "name": "Random Forest",
+  "cv_score": 0.8272234807446075,
+  "cv_std": 0.03038996187683264,
+  "val_acc": 0.8324022346368715,
+  "val_f1": 0.7540983606557377,
+  "train_acc": 0.8932584269662921,
+  "overfit_gap": 0.06085619232942063,
+  "time": 5.78570032119751,
+  "params": {
+    "n_estimators": 300,
+    "max_depth": 10,
+    "min_samples_split": 10,
+    "min_samples_leaf": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "XGBoost",
+  "cv_score": 0.8370530877573131,
+  "cv_std": 0.017052143531248825,
+  "val_acc": 0.8491620111731844,
+  "val_f1": 0.784,
+  "train_acc": 0.8946629213483146,
+  "overfit_gap": 0.04550091017513025,
+  "time": 4.738833904266357,
+  "params": {
+    "n_estimators": 100,
+    "learning_rate": 0.1,
+    "max_depth": 4,
+    "subsample": 1.0,
+    "colsample_bytree": 0.8
+  }
+}
